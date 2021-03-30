@@ -30,4 +30,5 @@ Route::middleware('auth')->prefix('/siswa')->name('siswa.')->group(function() {
     Route::post('/store', [App\Http\Controllers\Siswa\SiswaController::class, 'store'])->name('store');
     Route::get('/edit/{siswa}', [App\Http\Controllers\Siswa\SiswaController::class, 'edit'])->name('edit');
     Route::put('/update/{siswa}', [App\Http\Controllers\Siswa\SiswaController::class, 'update'])->name('update');
+    Route::delete('/delete/{siswa}', [App\Http\Controllers\Siswa\SiswaController::class, 'destroy'])->name('delete');
 });

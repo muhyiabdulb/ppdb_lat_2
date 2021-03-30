@@ -15,8 +15,8 @@ class SiswaController extends Controller
     }
     public function index()
     {
-        $siswa =  Siswa::where('id', auth()->user()->id)->get();
-        return view('siswa.index', compact('siswa'));
+        $siswas = Siswa::all();
+        return view('siswa.index', compact('siswas'));
     }
     public function create()
     {
@@ -40,7 +40,7 @@ class SiswaController extends Controller
         $siswa['user_id'] = auth()->user()->id;
         Siswa::create($siswa);
 
-        Alert::success('Pemberitahun', 'Selamat Anda telah daftar :)');
+        Alert::success('Pemberitahun', 'Berhasil Ditambahkan :)');
         return redirect()->route('siswa.index');
     }
     public function edit(Siswa $siswa)
@@ -66,8 +66,10 @@ class SiswaController extends Controller
         Alert::success('Pemberitahun!', 'Berhasil Diupdate :)');
         return redirect()->route('siswa.index');
     }
-    public function destroy()
+    public function destroy(Siswa $siswa)
     {
-        return view('siswa.dashboard');
+        $siswa->delete();
+        Alert::success('Pemberitahun', 'Berhasil Dihapus :)');
+        return redirect()->route('siswa.index');
     }
 }

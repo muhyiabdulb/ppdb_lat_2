@@ -129,7 +129,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="mt-2 btn btn-block btn-primary">Daftar</button>
+                            <button type="submit" class="mt-2 btn btn-primary">Daftar</button>
+                            <button type="reset" class="mt-2 btn btn-success">Bersihkan</button>
                         </form>
                     </div>
                 </div>

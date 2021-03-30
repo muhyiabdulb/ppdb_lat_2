@@ -11,31 +11,22 @@
                     </div>
                     <div>Hallo, {{ Auth::user()->name }}</div>
                 </div>
-                @if ($siswa !== true)
-                    <div class="page-title-actions">
-                        <div class="d-inline-block dropdown">
-                            <a href="{{ route('siswa.create') }}" class="btn-shadow dropdown-toggle btn btn-info">
-                                <span class="btn-icon-wrapper pr-2 opacity-7">
-                                    <i class="fa fa-plus"></i>
-                                </span>
-                                Daftar
-                            </a>
-                        </div>
+                <div class="page-title-actions">
+                    <div class="d-inline-block dropdown">
+                        <a href="{{ route('siswa.create') }}" class="btn-shadow dropdown-toggle btn btn-info">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                            Daftar
+                        </a>
                     </div>
-                @else
-                    <div class="page-title-actions">
-                        <div class="d-inline-block dropdown">
-                            <h4>Selamat, Anda sudah daftar</h4>
-                        </div>
-                    </div>
-                @endif
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Data Anda
-                    </div>
+                    <div class="card-header">Data Siswa</div>
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
@@ -53,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($siswa as $item)
+                                @forelse ($siswas as $item)
                                     <tr>
                                         <td class="text-center text-muted">{{ $item->nis }}</td>
                                         <td class="text-center">{{ $item->nama }}</td>
@@ -65,16 +56,23 @@
                                         <td class="text-center">{{ $item->kelas }}</td>
                                         <td class="text-center text-muted">{{ $item->jurusan }}</td>
                                         <td>
-                                            <a href="{{ route('siswa.edit', $item->id) }}"
-                                                class="mr-2 btn-icon btn-icon-only btn btn-outline-success">
-                                                <i class="pe-7s-pen btn-icon-wrapper"></i> Edit
-                                            </a>
+                                            <form action="{{ route('siswa.delete', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('siswa.edit', $item->id) }}"
+                                                    class="mr-2 btn-icon btn-icon-only btn btn-outline-success">
+                                                    <i class="pe-7s-pen btn-icon-wrapper"></i> Edit
+                                                </a>
+
+                                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"
+                                                    type="submit"><i class="pe-7s-trash btn-icon-wrapper"></i> Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="9" class="text-center text-muted">
-                                            <h4>Anda Belum Daftar</h4>
+                                            <h4>Data Kosong</h4>
                                         </td>
                                     </tr>
                                 @endforelse
