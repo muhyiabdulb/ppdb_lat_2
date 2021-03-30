@@ -26,7 +26,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Data Siswa</div>
+                    <div class="card-header">
+                        Data Siswa
+                        <a class="ml-5 btn btn-secondary mr-2" href="{{ route('siswa.pdf') }}"><i
+                                class="fas fa-download"></i>
+                            PDF</a>
+                    </div>
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>

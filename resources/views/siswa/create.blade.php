@@ -40,8 +40,8 @@
                                         <label for="nis">Jenis Kelamain</label>
                                         <select name="jk" class="form-control">
                                             <option selected disabled>Pilih JK</option>
-                                            <option value="L">Laki-laki</option>
-                                            <option value="P">Perempuan</option>
+                                            <option value="Laki-laki">Laki-laki</option>
+                                            <option value="Perempuan">Perempuan</option>
                                         </select>
                                         @error('jk')
                                             <div class="text-danger">

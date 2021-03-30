@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 Use Alert;
+use PDF;
 
 class SiswaController extends Controller
 {
@@ -71,5 +72,16 @@ class SiswaController extends Controller
         $siswa->delete();
         Alert::success('Pemberitahun', 'Berhasil Dihapus :)');
         return redirect()->route('siswa.index');
+    }
+     public function pdf()
+    {
+        $data = Siswa::all();
+        // dd($data);
+        $pdf = PDF::setOptions([
+                'dpi' => 150,
+                'defaultFont' => 'sans-serif'
+            ])->loadview('siswa.pdf', compact('data'));
+        return $pdf->download('data-siswa-'.date('Y-m-d_H-i-s').'.pdf');
+        // return $pdf->stream('history-transaksi-'.date('Y-m-d_H-i-s').'.pdf');
     }
 }
